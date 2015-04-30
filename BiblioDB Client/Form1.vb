@@ -1,33 +1,20 @@
 ﻿Imports System.IO
 Imports System.Net
-Public Class GlobalVariables
-    Public Shared user As String = ""
-    Public Shared password As Integer = ""
-End Class
 Public Class Form1
-    Dim user As String
-    Private Sub LoginToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs)
-
-    End Sub
-
-    Private Sub ProvaToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ProvaToolStripMenuItem.Click
-    End Sub
-
-    Private Sub LoginToolStripMenuItem_Click_1(sender As System.Object, e As System.EventArgs) Handles LoginToolStripMenuItem.Click
-        Form2.Show()
+    Private Sub LoginToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles LoginToolStripMenuItem.Click
+        If GlobalVariables.logged = False Then
+            Form2.Show()
+        Else
+            LoginToolStripMenuItem.Text = "Login"
+            GlobalVariables.user = ""
+            GlobalVariables.password = ""
+            GlobalVariables.logged = False
+            TabControl1.TabPages(2).Enabled = False
+            TabControl1.TabPages(3).Enabled = False
+        End If
     End Sub
 
     Private Sub Form1_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-
-    End Sub
-
-    Public Sub New()
-
-        ' Chiamata richiesta dalla finestra di progettazione.
-        InitializeComponent()
-        TabControl1.TabPages(2).Enabled = False
-        TabControl1.TabPages(3).Enabled = False
-        ' Aggiungere le eventuali istruzioni di inizializzazione dopo la chiamata a InitializeComponent().
         ComboBox1.Text = "Titolo"
         Dim request As WebRequest = _
         WebRequest.Create("http://192.168.1.6:5000/lista")
@@ -38,7 +25,11 @@ Public Class Form1
         RichTextBox1.Text = lista
         areader.Close()
         response.Close()
-
+        TabControl1.TabPages(2).Enabled = False
+        TabControl1.TabPages(3).Enabled = False
+        ComboBox1.Text = "Titolo"
+        ComboBox2.Text = "ISBN"
+        ComboBox3.Text = "Presta"
     End Sub
 
     Private Sub Label1_Click(sender As System.Object, e As System.EventArgs) Handles Label1.Click
@@ -98,4 +89,29 @@ Public Class Form1
             PictureBox1.Image = tImage
         End If
     End Sub
+
+    Private Sub InfoSuToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles InfoSuToolStripMenuItem.Click
+        MsgBox("BiblioDB Client.NET" + vbNewLine + "By Eugenio Tampieri", MsgBoxStyle.Information)
+    End Sub
+
+    Private Sub Label4_Click(sender As System.Object, e As System.EventArgs) Handles Label4.Click
+
+    End Sub
+
+    Private Sub TextBox3_TextChanged(sender As System.Object, e As System.EventArgs) Handles TextBox3.TextChanged
+
+    End Sub
+
+    Private Sub Label3_Click(sender As System.Object, e As System.EventArgs) Handles Label3.Click
+
+    End Sub
+
+    Private Sub ComboBox2_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles ComboBox2.SelectedIndexChanged
+        Label3.Text = ComboBox2.Text
+    End Sub
+End Class
+Public Class GlobalVariables
+    Public Shared user As String = ""
+    Public Shared password As String = ""
+    Public Shared logged As Boolean = False
 End Class
