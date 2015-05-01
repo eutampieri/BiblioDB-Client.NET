@@ -1,5 +1,7 @@
 ﻿Imports System.IO
 Imports System.Net
+Imports System.Drawing.Printing
+
 Public Class Form1
     Private Sub LoginToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles LoginToolStripMenuItem.Click
         If GlobalVariables.logged = False Then
@@ -109,9 +111,71 @@ Public Class Form1
     Private Sub ComboBox2_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles ComboBox2.SelectedIndexChanged
         Label3.Text = ComboBox2.Text
     End Sub
+
+    Private Sub Button3_Click(sender As System.Object, e As System.EventArgs) Handles Button3.Click
+        If PrintDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
+            PrintDocument1.Print()
+        End If
+    End Sub
+
+    Private Sub PrintDocument1_PrintPage(ByVal sender As Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles PrintDocument1.PrintPage
+        Dim margins As New Margins(40, 40, 40, 40)
+        PrintDocument1.DefaultPageSettings.Margins = margins
+        e.Graphics.DrawString("", Font, Brushes.Black, 100, 200)
+        e.Graphics.DrawString(RichTextBox2.Text, Font, Brushes.Black, 150, 250)
+        'e.Graphics.DrawImage(Image.FromFile("C:\Creek.jpg"), 20, 50, 40, 60)
+        'e.Graphics.DrawLine(Pens.Red, 100, 150, 300, 400)
+    End Sub
+
+    Private Sub Button2_Click(sender As System.Object, e As System.EventArgs) Handles Button2.Click
+        Dim statoP As Integer
+        Dim url As String
+        If ComboBox3.Text = "Presta" Then
+            statoP = "0"
+        Else
+            statoP = "1"
+        End If
+        If ComboBox2.Text = "ISBN" Then
+            url = "http://192.168.1.6:5000/presta/" + GlobalVariables.user + "/" + GlobalVariables.password + "/" + TextBox3.Text + "/" + TextBox4.Text + "/" + Str(statoP)
+            Dim request As WebRequest = _
+            WebRequest.Create(url)
+            Dim response As WebResponse = request.GetResponse()
+            Dim dataStream As Stream = response.GetResponseStream()
+            Dim areader As New StreamReader(dataStream)
+            Dim titolo As String = areader.ReadToEnd()
+            RichTextBox2.Text = titolo
+            areader.Close()
+            response.Close()
+        ElseIf ComboBox2.Text = "Titolo" Then
+            Dim request As WebRequest = _
+            WebRequest.Create("http://192.168.1.6:5000/isbninfo/isbn/" + TextBox3.Text)
+            Dim response As WebResponse = request.GetResponse()
+            Dim dataStream As Stream = response.GetResponseStream()
+            Dim areader As New StreamReader(dataStream)
+            Dim isbn As String = areader.ReadToEnd().Replace(" ", "")
+            areader.Close()
+            response.Close()
+            url = "http://192.168.1.6:5000/presta/" + GlobalVariables.user + "/" + GlobalVariables.password + "/" + isbn + "/" + TextBox4.Text + "/" + Str(statoP)
+            request = _
+            WebRequest.Create(url)
+            response = request.GetResponse()
+            dataStream = response.GetResponseStream()
+            Dim reader As New StreamReader(dataStream)
+            Dim responseFromServer As String = reader.ReadToEnd()
+            RichTextBox2.Text = responseFromServer
+            reader.Close()
+            response.Close()
+        End If
+    End Sub
+
+    Private Sub ComboBox3_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles ComboBox3.SelectedIndexChanged
+        Button2.Text = ComboBox3.Text
+    End Sub
 End Class
 Public Class GlobalVariables
     Public Shared user As String = ""
     Public Shared password As String = ""
     Public Shared logged As Boolean = False
+    Public Shared ip As String
+    Public Shared port As String
 End Class
