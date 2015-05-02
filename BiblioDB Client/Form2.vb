@@ -16,7 +16,7 @@ Public Class Form2
             strResult += b.ToString("x2")
         Next
         Dim request As WebRequest = _
-        WebRequest.Create("http://192.168.1.6:5000/auth/" + TextBox1.Text + "/" + strResult.ToString)
+        WebRequest.Create("http://" + My.Settings.IP + ":" + My.Settings.Port + "/auth/" + TextBox1.Text + "/" + strResult.ToString)
         Dim response As WebResponse = request.GetResponse()
         Dim dataStream As Stream = response.GetResponseStream()
         Dim areader As New StreamReader(dataStream)

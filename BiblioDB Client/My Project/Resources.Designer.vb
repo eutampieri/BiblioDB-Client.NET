@@ -59,32 +59,5 @@ Namespace My.Resources
                 resourceCulture = value
             End Set
         End Property
-        
-        '''<summary>
-        '''  Cerca una stringa localizzata simile a 192.168.1.6.
-        '''</summary>
-        Friend ReadOnly Property IP() As String
-            Get
-                Return ResourceManager.GetString("IP", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Cerca una stringa localizzata simile a Auth.
-        '''</summary>
-        Friend ReadOnly Property Mode() As String
-            Get
-                Return ResourceManager.GetString("Mode", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Cerca una stringa localizzata simile a 5000.
-        '''</summary>
-        Friend ReadOnly Property Port() As String
-            Get
-                Return ResourceManager.GetString("Port", resourceCulture)
-            End Get
-        End Property
     End Module
 End Namespace

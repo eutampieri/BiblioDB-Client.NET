@@ -117,13 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="IP" xml:space="preserve">
-    <value>192.168.1.6</value>
-  </data>
-  <data name="Mode" xml:space="preserve">
-    <value>Auth</value>
-  </data>
-  <data name="Port" xml:space="preserve">
-    <value>5000</value>
-  </data>
 </root>
