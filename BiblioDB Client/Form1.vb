@@ -195,7 +195,34 @@ Public Class Form1
     End Sub
 
     Private Sub Button5_Click(sender As System.Object, e As System.EventArgs) Handles Button5.Click
-        MsgBox("Devo ancora implementare questa funzione", MsgBoxStyle.Information)
+        Dim url As String
+        If Not TextBox7.Text = "" Then
+            Dim request As WebRequest = _
+            WebRequest.Create("http://" + My.Settings.IP + ":" + My.Settings.Port + "/gbooks/" + TextBox7.Text + "/autore")
+            Dim response As WebResponse = request.GetResponse()
+            Dim dataStream As Stream = response.GetResponseStream()
+            Dim ar As New StreamReader(dataStream)
+            Dim autore As String = ar.ReadToEnd().Replace(" ", "")
+            ar.Close()
+            response.Close()
+            TextBox6.Text = autore
+            url = "http://" + My.Settings.IP + ":" + My.Settings.Port + "/gbooks/" + TextBox7.Text + "/titolo"
+            request = _
+            WebRequest.Create(url)
+            response = request.GetResponse()
+            dataStream = response.GetResponseStream()
+            Dim at As New StreamReader(dataStream)
+            Dim responseFromServer As String = at.ReadToEnd()
+            TextBox5.Text = responseFromServer
+            at.Close()
+            response.Close()
+        Else
+            MsgBox("Inserisci prima l'ISBN!")
+        End If
+    End Sub
+
+    Private Sub DonaToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles DonaToolStripMenuItem.Click
+        Form4.Show()
     End Sub
 End Class
 Public Class GlobalVariables

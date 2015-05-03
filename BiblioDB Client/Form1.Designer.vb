@@ -65,6 +65,7 @@ Partial Class Form1
         Me.InfoSuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
         Me.PrintDialog1 = New System.Windows.Forms.PrintDialog()
+        Me.DonaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -426,7 +427,7 @@ Partial Class Form1
         '
         'MenuToolStripMenuItem
         '
-        Me.MenuToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpzioniToolStripMenuItem, Me.LoginToolStripMenuItem, Me.InfoSuToolStripMenuItem})
+        Me.MenuToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpzioniToolStripMenuItem, Me.LoginToolStripMenuItem, Me.InfoSuToolStripMenuItem, Me.DonaToolStripMenuItem})
         Me.MenuToolStripMenuItem.Name = "MenuToolStripMenuItem"
         Me.MenuToolStripMenuItem.Size = New System.Drawing.Size(50, 20)
         Me.MenuToolStripMenuItem.Text = "Menu"
@@ -434,19 +435,19 @@ Partial Class Form1
         'OpzioniToolStripMenuItem
         '
         Me.OpzioniToolStripMenuItem.Name = "OpzioniToolStripMenuItem"
-        Me.OpzioniToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
+        Me.OpzioniToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.OpzioniToolStripMenuItem.Text = "Opzioni"
         '
         'LoginToolStripMenuItem
         '
         Me.LoginToolStripMenuItem.Name = "LoginToolStripMenuItem"
-        Me.LoginToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
+        Me.LoginToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.LoginToolStripMenuItem.Text = "Login"
         '
         'InfoSuToolStripMenuItem
         '
         Me.InfoSuToolStripMenuItem.Name = "InfoSuToolStripMenuItem"
-        Me.InfoSuToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
+        Me.InfoSuToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.InfoSuToolStripMenuItem.Text = "Info su"
         '
         'PrintDocument1
@@ -455,6 +456,12 @@ Partial Class Form1
         'PrintDialog1
         '
         Me.PrintDialog1.UseEXDialog = True
+        '
+        'DonaToolStripMenuItem
+        '
+        Me.DonaToolStripMenuItem.Name = "DonaToolStripMenuItem"
+        Me.DonaToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DonaToolStripMenuItem.Text = "Dona!"
         '
         'Form1
         '
@@ -524,5 +531,6 @@ Partial Class Form1
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents RichTextBox3 As System.Windows.Forms.RichTextBox
     Friend WithEvents Button5 As System.Windows.Forms.Button
+    Friend WithEvents DonaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
