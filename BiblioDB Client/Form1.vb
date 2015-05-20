@@ -17,6 +17,21 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        Dim sGUID As String
+        Dim url As String
+        If My.Settings.UUID = "0" Then
+            My.Settings.UUID = System.Guid.NewGuid.ToString()
+        End If
+        sGUID = My.Settings.UUID
+        url = "http://serverseutampieri.ddns.net:4049/provision/" + sGUID + "/BiblioDB-Client.NET/130"
+        Dim Prequest As WebRequest = _
+        WebRequest.Create(url)
+        Dim Presponse As WebResponse = Prequest.GetResponse()
+        Dim PdataStream As Stream = Presponse.GetResponseStream()
+        Dim Preader As New StreamReader(PdataStream)
+        Dim provision As String = Preader.ReadToEnd()
+        Preader.Close()
+        Presponse.Close()
         ComboBox1.Text = "Titolo"
         Dim request As WebRequest = _
         WebRequest.Create("http://" + My.Settings.IP + ":" + My.Settings.Port + "/lista")
@@ -49,68 +64,16 @@ Public Class Form1
 
     Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles Button1.Click
         If ComboBox1.Text = "Titolo" Then
-            Dim request As WebRequest = _
-            WebRequest.Create("http://" + My.Settings.IP + ":" + My.Settings.Port + "/isbninfo/isbn/" + TextBox1.Text)
-            Dim response As WebResponse = request.GetResponse()
-            Dim dataStream As Stream = response.GetResponseStream()
-            Dim areader As New StreamReader(dataStream)
-            Dim isbn As String = areader.ReadToEnd()
-            areader.Close()
-            response.Close()
-            request = _
-            WebRequest.Create("http://" + My.Settings.IP + ":" + My.Settings.Port + "/isbninfo/scheda/" + TextBox1.Text)
-            response = request.GetResponse()
-            dataStream = response.GetResponseStream()
-            Dim reader As New StreamReader(dataStream)
-            Dim responseFromServer As String = reader.ReadToEnd()
-            TextBox2.Text = responseFromServer.Replace("Autore", Environment.NewLine + "Autore").Replace("Posizione", Environment.NewLine + "Posizione").Replace("ISBN", Environment.NewLine + "ISBN").Replace("Stato", Environment.NewLine + "Stato")
-            reader.Close()
-            response.Close()
-            Dim url As String
-            url = "http://" + My.Settings.IP + ":" + My.Settings.Port + "/gbooks/" + isbn + "/copertina"
-            Dim tClient As WebClient = New WebClient
-            Dim tImage As Bitmap = Bitmap.FromStream(New MemoryStream(tClient.DownloadData(url)))
-            PictureBox1.Image = tImage
+            WebBrowser1.Url = New Uri("http://" + My.Settings.IP + ":" + My.Settings.Port + "/cercahtml/titolo/" + TextBox1.Text)
+            WebBrowser1.Update()
         Else
-            Dim request As WebRequest = _
-            WebRequest.Create("http://" + My.Settings.IP + ":" + My.Settings.Port + "/isbninfo/titolo/" + TextBox1.Text)
-            Dim response As WebResponse = request.GetResponse()
-            Dim dataStream As Stream = response.GetResponseStream()
-            Dim areader As New StreamReader(dataStream)
-            Dim titolo As String = areader.ReadToEnd()
-            areader.Close()
-            response.Close()
-            request = _
-            WebRequest.Create("http://" + My.Settings.IP + ":" + My.Settings.Port + "/isbninfo/scheda/" + titolo)
-            response = request.GetResponse()
-            dataStream = response.GetResponseStream()
-            Dim reader As New StreamReader(dataStream)
-            Dim responseFromServer As String = reader.ReadToEnd()
-            TextBox2.Text = responseFromServer.Replace("Autore", Environment.NewLine + "Autore").Replace("Posizione", Environment.NewLine + "Posizione").Replace("ISBN", Environment.NewLine + "ISBN").Replace("Stato", Environment.NewLine + "Stato")
-            reader.Close()
-            response.Close()
-            Dim url As String
-            url = "http://" + My.Settings.IP + ":" + My.Settings.Port + "/gbooks/" + TextBox1.Text + "/copertina"
-            Dim tClient As WebClient = New WebClient
-            Dim tImage As Bitmap = Bitmap.FromStream(New MemoryStream(tClient.DownloadData(url)))
-            PictureBox1.Image = tImage
+            WebBrowser1.Url = New Uri("http://" + My.Settings.IP + ":" + My.Settings.Port + "/cercahtml/autore/" + TextBox1.Text)
+            WebBrowser1.Update()
         End If
     End Sub
 
     Private Sub InfoSuToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles InfoSuToolStripMenuItem.Click
         MsgBox("BiblioDB Client.NET" + vbNewLine + "By Eugenio Tampieri", MsgBoxStyle.Information)
-    End Sub
-
-    Private Sub Label4_Click(sender As System.Object, e As System.EventArgs) Handles Label4.Click
-
-    End Sub
-
-    Private Sub TextBox3_TextChanged(sender As System.Object, e As System.EventArgs) Handles TextBox3.TextChanged
-
-    End Sub
-
-    Private Sub Label3_Click(sender As System.Object, e As System.EventArgs) Handles Label3.Click
-
     End Sub
 
     Private Sub ComboBox2_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles ComboBox2.SelectedIndexChanged

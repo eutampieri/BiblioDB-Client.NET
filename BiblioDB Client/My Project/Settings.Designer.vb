@@ -101,6 +101,18 @@ Namespace My
                 Me("BiblioString") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property UUID() As String
+            Get
+                Return CType(Me("UUID"),String)
+            End Get
+            Set
+                Me("UUID") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

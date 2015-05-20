@@ -14,5 +14,8 @@
     <Setting Name="BiblioString" Type="System.String" Scope="User">
       <Value Profile="(Default)">BiblioDB Client.NET 0.1</Value>
     </Setting>
+    <Setting Name="UUID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

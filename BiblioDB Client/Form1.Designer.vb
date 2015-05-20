@@ -25,13 +25,12 @@ Partial Class Form1
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.WebBrowser1 = New System.Windows.Forms.WebBrowser()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
@@ -63,12 +62,11 @@ Partial Class Form1
         Me.OpzioniToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoginToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.InfoSuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DonaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
         Me.PrintDialog1 = New System.Windows.Forms.PrintDialog()
-        Me.DonaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.TabPage4.SuspendLayout()
@@ -85,55 +83,54 @@ Partial Class Form1
         Me.TabControl1.Location = New System.Drawing.Point(0, 24)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(446, 240)
+        Me.TabControl1.Size = New System.Drawing.Size(446, 342)
         Me.TabControl1.TabIndex = 0
         '
         'TabPage1
         '
-        Me.TabPage1.Controls.Add(Me.TextBox2)
+        Me.TabPage1.Controls.Add(Me.WebBrowser1)
         Me.TabPage1.Controls.Add(Me.Button1)
         Me.TabPage1.Controls.Add(Me.TextBox1)
         Me.TabPage1.Controls.Add(Me.Label2)
         Me.TabPage1.Controls.Add(Me.Label1)
         Me.TabPage1.Controls.Add(Me.ComboBox1)
-        Me.TabPage1.Controls.Add(Me.PictureBox1)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(438, 214)
+        Me.TabPage1.Size = New System.Drawing.Size(438, 316)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Ricerca"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
-        'TextBox2
+        'WebBrowser1
         '
-        Me.TextBox2.Location = New System.Drawing.Point(148, 112)
-        Me.TextBox2.Multiline = True
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.ReadOnly = True
-        Me.TextBox2.Size = New System.Drawing.Size(284, 92)
-        Me.TextBox2.TabIndex = 7
+        Me.WebBrowser1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.WebBrowser1.Location = New System.Drawing.Point(3, 46)
+        Me.WebBrowser1.MinimumSize = New System.Drawing.Size(20, 20)
+        Me.WebBrowser1.Name = "WebBrowser1"
+        Me.WebBrowser1.Size = New System.Drawing.Size(432, 267)
+        Me.WebBrowser1.TabIndex = 7
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(145, 83)
+        Me.Button1.Location = New System.Drawing.Point(263, 17)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(287, 23)
+        Me.Button1.Size = New System.Drawing.Size(167, 23)
         Me.Button1.TabIndex = 6
         Me.Button1.Text = "Cerca"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(145, 57)
+        Me.TextBox1.Location = New System.Drawing.Point(110, 19)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(287, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(147, 20)
         Me.TextBox1.TabIndex = 5
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(145, 41)
+        Me.Label2.Location = New System.Drawing.Point(107, 3)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(39, 13)
         Me.Label2.TabIndex = 4
@@ -142,7 +139,7 @@ Partial Class Form1
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(145, 1)
+        Me.Label1.Location = New System.Drawing.Point(8, 1)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(28, 13)
         Me.Label1.TabIndex = 3
@@ -151,20 +148,11 @@ Partial Class Form1
         'ComboBox1
         '
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"Titolo", "ISBN"})
-        Me.ComboBox1.Location = New System.Drawing.Point(145, 17)
+        Me.ComboBox1.Items.AddRange(New Object() {"Titolo", "Autore"})
+        Me.ComboBox1.Location = New System.Drawing.Point(8, 17)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(287, 21)
+        Me.ComboBox1.Size = New System.Drawing.Size(93, 21)
         Me.ComboBox1.TabIndex = 2
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox1.Location = New System.Drawing.Point(8, 6)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(131, 206)
-        Me.PictureBox1.TabIndex = 1
-        Me.PictureBox1.TabStop = False
         '
         'TabPage2
         '
@@ -435,20 +423,26 @@ Partial Class Form1
         'OpzioniToolStripMenuItem
         '
         Me.OpzioniToolStripMenuItem.Name = "OpzioniToolStripMenuItem"
-        Me.OpzioniToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.OpzioniToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
         Me.OpzioniToolStripMenuItem.Text = "Opzioni"
         '
         'LoginToolStripMenuItem
         '
         Me.LoginToolStripMenuItem.Name = "LoginToolStripMenuItem"
-        Me.LoginToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.LoginToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
         Me.LoginToolStripMenuItem.Text = "Login"
         '
         'InfoSuToolStripMenuItem
         '
         Me.InfoSuToolStripMenuItem.Name = "InfoSuToolStripMenuItem"
-        Me.InfoSuToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.InfoSuToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
         Me.InfoSuToolStripMenuItem.Text = "Info su"
+        '
+        'DonaToolStripMenuItem
+        '
+        Me.DonaToolStripMenuItem.Name = "DonaToolStripMenuItem"
+        Me.DonaToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
+        Me.DonaToolStripMenuItem.Text = "Dona!"
         '
         'PrintDocument1
         '
@@ -457,17 +451,11 @@ Partial Class Form1
         '
         Me.PrintDialog1.UseEXDialog = True
         '
-        'DonaToolStripMenuItem
-        '
-        Me.DonaToolStripMenuItem.Name = "DonaToolStripMenuItem"
-        Me.DonaToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.DonaToolStripMenuItem.Text = "Dona!"
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(446, 264)
+        Me.ClientSize = New System.Drawing.Size(446, 366)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -477,7 +465,6 @@ Partial Class Form1
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
@@ -500,12 +487,10 @@ Partial Class Form1
     Friend WithEvents TabPage4 As System.Windows.Forms.TabPage
     Friend WithEvents LoginToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
     Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
@@ -532,5 +517,6 @@ Partial Class Form1
     Friend WithEvents RichTextBox3 As System.Windows.Forms.RichTextBox
     Friend WithEvents Button5 As System.Windows.Forms.Button
     Friend WithEvents DonaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents WebBrowser1 As System.Windows.Forms.WebBrowser
 
 End Class
